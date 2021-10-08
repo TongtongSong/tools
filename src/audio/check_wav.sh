@@ -1,10 +1,11 @@
 wav_list=$1
 SAMPLE_RATE=16000
-CHANNELS=1
+CHANNELS=2
 SAMPLE_ENCODING=16
 wrong_wav_file=wrong_wav
 [ -f $wrong_wav_file ] && rm $wrong_wav_file
 for x in `cat $wav_list`;do
+    echo $x
     name=`basename $x`
     sample_rate=`soxi $x| grep "Sample Rate"|awk '{print($4)}'`
     channels=`soxi $x| grep "Channels"|awk '{print($3)}'`
