@@ -1,5 +1,5 @@
 #!/bin/bash
-nj=4
+nj=16
 input_file=$1
 #wav_scp=$2
 

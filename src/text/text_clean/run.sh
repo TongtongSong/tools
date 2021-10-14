@@ -16,11 +16,6 @@ _clean(){
   paste -d ' ' $tmpdir/uttid $tmpdir/sen_5 > $text
   rm -r $tmpdir
 }
-input=$1
-for x in `cat $input`;do
-  if [[ $x == *backup* ]];then
-      echo "$x pass"
-  else
-      _clean $x
-  fi
-done
+
+_clean $1
+
