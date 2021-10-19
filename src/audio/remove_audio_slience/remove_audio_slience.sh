@@ -19,6 +19,7 @@ mkdir -p $txt_grid_dir
 nj=16
 tmpdir=$(mktemp -d tmp-XXXXX)
 [ -d $dir ] && find $dir -iname "*.wav" > $tmpdir/wav_list && input=$tmpdir/wav_list
+dir_name=$(echo $dir|awk -F'/' '{print($NF)}')
 
 # your JOB
 _remove_audio_slience(){
@@ -56,7 +57,7 @@ _remove_audio_slience(){
 split --additional-suffix .slice -d -n l/$nj $input $tmpdir/tmp_
 for slice in $(ls $tmpdir/tmp_*.slice); do
 {
-  _remove_audio_slience $slice $name
+  _remove_audio_slience $slice $dir_name
 }&
 done
 wait
