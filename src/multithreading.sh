@@ -51,13 +51,14 @@ split --additional-suffix .slice -d -n l/$nj $input_file $tmpdir/tmp_
 
 for slice in `ls $tmpdir/tmp_*.slice`; do
 {
-  _bpe $slice
+  name=$(basename $slice)
+  python wav2dur.py $slice $tmpdir/$name.utt2dur
+#  _bpe $slice
 #  . tools/synthesis.sh $slice
 #  _cp $slice
 #  _flac_to_wav $slice
 }&
 done
 wait
-
+cat $tmpdir/tmp_*.slice.utt2dur
 rm -r $tmpdir
-echo "finish"
